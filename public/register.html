@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Register</title></head>
+<body>
+  <h1>Register</h1>
+  <input id="u" placeholder="Username"><br>
+  <input id="p" type="password" placeholder="Password"><br>
+  <button onclick="go()">Register</button>
+  <p id="msg"></p>
+  <a href="index.html">Home</a>
+  <script>
+    async function go() {
+      const res = await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: u.value, password: p.value })
+      });
+      msg.textContent = (await res.json()).message;
+    }
+  </script>
+</body>
+</html>

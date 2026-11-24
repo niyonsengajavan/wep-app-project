@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>WebApp</title></head>
+<body>
+  <h1>CODERWANDA Web App</h1>
+  <p id="info">Loading...</p>
+  <a href="register.html">Register</a>
+  <script>
+    fetch('/api/info').then(r => r.json()).then(d => {
+      document.getElementById('info').textContent = d.message;
+    });
+  </script>
+</body>
+</html>

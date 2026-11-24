@@ -1,0 +1,11 @@
+{
+  "name": "webapp",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "jest"
+  },
+  "dependencies": { "express": "^4.19.2" },
+  "devDependencies": { "jest": "^30.0.0", "supertest": "^7.0.0" }
+}
