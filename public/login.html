@@ -8,6 +8,7 @@
   <button onclick="go()">Login</button>
   <p id="msg"></p>
   <a href="index.html">Home</a>
+  <p>Note: This is a demo login page. The username and password are not validated against any database.</p>
   <script>
     async function go() {
       const res = await fetch('/api/login', {
