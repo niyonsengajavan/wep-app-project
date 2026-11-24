@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -8,26 +9,30 @@ pipeline {
     }
 
     stages {
+
         stage('Install Dependencies') {
             steps {
                 sh 'npm ci'
             }
         }
+
         stage('Test') {
             steps {
                 sh 'npm test'
             }
         }
-    }
-    stage('Build Image') {
-        steps {
-            sh 'docker build -t $IMAGE -t tourism-portal:latest .'
+
+        stage('Build Image') {
+            steps {
+                sh 'docker build -t $IMAGE_NAME -t tourism-portal:latest .'
+            }
         }
-    }
-    stage('Deploy') {
-        steps {
-            sh 'docker rm -f $APP_NAME || true'
-            sh 'docker run -d --name $APP_NAME --restart unless-stopped -p $HOST_PORT:4000 $IMAGE'
+
+        stage('Deploy') {
+            steps {
+                sh 'docker rm -f $CONTAINER_NAME || true'
+                sh 'docker run -d --name $CONTAINER_NAME --restart unless-stopped -p $HOST_PORT:4000 $IMAGE_NAME'
+            }
         }
     }
 }
